@@ -1,15 +1,18 @@
 import pytest
 
 DEAD = 0
+ALIVE = 1
 class Game:
+    def __init__(self):
+        self.oneone = DEAD
     def set_cell_alive(self, x, y):
-        pass
+        self.oneone = ALIVE
 
     def move_to_next_time(self):
-        pass
+        self.oneone = DEAD
 
     def get_status(self, x, y):
-        return DEAD
+        return self.oneone
 
 
 def create_game_of_life_with_all_dead_cell():
@@ -21,6 +24,7 @@ def test_given_living_cell_with_0_live_nieghbors_it_dies():
     game = create_game_of_life_with_all_dead_cell()
     # set (1,1) cell to alive
     game.set_cell_alive(1,1)
+    assert game.get_status(1, 1) == ALIVE
     # move to the next point in time
     game.move_to_next_time()
     # the cell at 1,1 is now dead

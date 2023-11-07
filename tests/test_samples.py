@@ -1,4 +1,27 @@
 import pytest
 
-def test_pytest():
-    assert True
+DEAD = 0
+class Game:
+    def set_cell_alive(self, x, y):
+        pass
+
+    def move_to_next_time(self):
+        pass
+
+    def get_status(self, x, y):
+        return DEAD
+
+
+def create_game_of_life_with_all_dead_cell():
+    return Game()
+
+
+def test_given_living_cell_with_0_live_nieghbors_it_dies():
+    # create a game of life
+    game = create_game_of_life_with_all_dead_cell()
+    # set (1,1) cell to alive
+    game.set_cell_alive(1,1)
+    # move to the next point in time
+    game.move_to_next_time()
+    # the cell at 1,1 is now dead
+    assert game.get_status(1,1) == DEAD

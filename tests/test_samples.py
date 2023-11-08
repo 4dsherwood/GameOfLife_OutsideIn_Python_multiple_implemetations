@@ -8,15 +8,15 @@ class Game:
         # list.get((1,1))
         # lookup of cells
         # lookup.get(1,1)
-        self.cells = []  # list of tuples
+        self.cells = ""
     def set_cell_alive(self, x, y):
-        self.cells.append((x,y))
+        self.cells += f"({x},{y})"
 
     def move_to_next_time(self):
         return Game()
 
     def get_status(self, x, y):
-        key = (x,y)
+        key = f"({x},{y})"
         if key in self.cells:
             return ALIVE
         else:

@@ -4,19 +4,23 @@ DEAD = 0
 ALIVE = 1
 class Game:
     def __init__(self):
-        self.matrix = [[0, 0, 0],
-                        [0, 0, 0],
-                        [0, 0, 0]]
+        # list cells
+        # list.get((1,1))
+        # lookup of cells
+        # lookup.get(1,1)
+        self.cells = [[0, 0, 0],
+                      [0, 0, 0],
+                      [0, 0, 0]]
     def set_cell_alive(self, x, y):
-        self.matrix[x][y] = ALIVE
+        self.cells[x][y] = ALIVE
 
     def move_to_next_time(self):
-        self.matrix =  [[0, 0, 0],
-                        [0, 0, 0],
-                        [0, 0, 0]]
+        self.cells =  [[0, 0, 0],
+                       [0, 0, 0],
+                       [0, 0, 0]]
 
     def get_status(self, x, y):
-        return self.matrix[x][y]
+        return self.cells[x][y]
 
 
 def create_game_of_life_with_all_dead_cell():

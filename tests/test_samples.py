@@ -8,17 +8,17 @@ class Game:
         # list.get((1,1))
         # lookup of cells
         # lookup.get(1,1)
-        self.cells = {  }
+        self.cells = []  # list of tuples
     def set_cell_alive(self, x, y):
-        self.cells[(x,y)] = ALIVE
+        self.cells.append((x,y))
 
     def move_to_next_time(self):
         return Game()
 
     def get_status(self, x, y):
-        key = (x,y) # tuple
+        key = (x,y)
         if key in self.cells:
-            return self.cells[key]
+            return ALIVE
         else:
             return DEAD
 

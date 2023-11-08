@@ -8,19 +8,19 @@ class Game:
         # list.get((1,1))
         # lookup of cells
         # lookup.get(1,1)
-        self.cells = [[0, 0, 0],
-                      [0, 0, 0],
-                      [0, 0, 0]]
+        self.cells = {  }
     def set_cell_alive(self, x, y):
-        self.cells[x][y] = ALIVE
+        self.cells[f"{x},{y}"] = ALIVE
 
     def move_to_next_time(self):
-        self.cells =  [[0, 0, 0],
-                       [0, 0, 0],
-                       [0, 0, 0]]
+        return Game()
 
     def get_status(self, x, y):
-        return self.cells[x][y]
+        key = f"{x},{y}"
+        if key in self.cells:
+            return self.cells[key]
+        else:
+            return DEAD
 
 
 def create_game_of_life_with_all_dead_cell():
@@ -32,7 +32,7 @@ def test_given_living_cell_with_0_live_nieghbors_it_dies():
     game.set_cell_alive(1,1)
     assert game.get_status(0, 0) == DEAD
     assert game.get_status(1, 1) == ALIVE
-    game.move_to_next_time()
+    game = game.move_to_next_time()
     assert game.get_status(1,1) == DEAD
 
 

@@ -17,10 +17,8 @@ class Game:
 
     def get_status(self, x, y):
         key = f"({x},{y})"
-        if key in self.cells:
-            return ALIVE
-        else:
-            return DEAD
+        return ALIVE if key in self.cells else DEAD
+
 
 
 def create_game_of_life_with_all_dead_cell():

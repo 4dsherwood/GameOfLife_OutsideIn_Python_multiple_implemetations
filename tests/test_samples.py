@@ -10,13 +10,13 @@ class Game:
         # lookup.get(1,1)
         self.cells = {  }
     def set_cell_alive(self, x, y):
-        self.cells[f"{x},{y}"] = ALIVE
+        self.cells[(x,y)] = ALIVE
 
     def move_to_next_time(self):
         return Game()
 
     def get_status(self, x, y):
-        key = f"{x},{y}"
+        key = (x,y) # tuple
         if key in self.cells:
             return self.cells[key]
         else:

@@ -3,14 +3,14 @@
 class Game:
     def __init__(self):
         def dead_board(x,y):
-            # print("DEAD")
+            print("DEAD")
             return DEAD
         #self.cells = lambda x,y:DEAD
         self.cells = dead_board
     def set_cell_alive(self, x, y):
         old_board = self.cells # takes the lambda function
         def new_board(x1,y1): # closure (aka inner funciton)
-            # print(f"inner closure for ({x},{y}) called with ({x1},{y1})")
+            print(f"inner closure for ({x},{y}) called with ({x1},{y1})")
             if x == x1 and y == y1:
                 return ALIVE
             else:

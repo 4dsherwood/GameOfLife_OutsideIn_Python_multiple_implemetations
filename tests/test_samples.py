@@ -1,3 +1,4 @@
+import pytest
 from approvaltests import verify
 from approvaltests.storyboard import StoryBoard
 
@@ -6,6 +7,20 @@ from game import Game, DEAD, ALIVE
 
 def create_game_of_life_with_all_dead_cell():
     return Game()
+def test_infinte_boards():
+    game = Game()
+    game.cells = lambda x,y: x%2 == y%2
+    story_board = StoryBoard()
+    story_board.add_frame(game)
+    story_board.add_frame(game.move_to_next_time())
+    verify(story_board)
+
+def test_stackoverflow_explosion():  #CAUTION    stackoverflow_explosion
+    with pytest.raises(RecursionError):
+        game = Game()
+        for a in range(0,2000): #try 20
+            game = game.move_to_next_time()
+        assert game.get_status(0,0) == DEAD  # this ran a longe time
 
 
 def test_given_living_cell_with_0_live_nieghbors_it_dies():

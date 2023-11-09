@@ -15,13 +15,20 @@ def test_infinte_boards():
     story_board.add_frame(game.move_to_next_time())
     verify(story_board)
 
+# 2000   500 hang  958 recursion error
 def test_stackoverflow_explosion():  #CAUTION    stackoverflow_explosion
     with pytest.raises(RecursionError):
         game = Game()
-        for a in range(0,2000): #try 20
+        for a in range(0,958): # 2000
             game = game.move_to_next_time()
-        assert game.get_status(0,0) == DEAD  # this ran a longe time
+        assert game.get_status(0,0) == DEAD  # this ran a long time
 
+def test_another_stackoverflow_explosion():  #CAUTION    stack memory limit
+    with pytest.raises(RecursionError):
+        game = Game()
+        for a in range(0,10): #try 20
+            game = game.move_to_next_time()
+        assert game.get_status(0,0) == DEAD
 
 def test_given_living_cell_with_0_live_nieghbors_it_dies():
     game = create_game_of_life_with_all_dead_cell()

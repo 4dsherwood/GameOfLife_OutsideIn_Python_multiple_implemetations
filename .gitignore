@@ -39,3 +39,4 @@ staticfiles
 .env
 *.egg
 *.egg-info
+.DS_Store

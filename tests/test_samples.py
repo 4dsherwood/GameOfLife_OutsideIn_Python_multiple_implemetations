@@ -23,7 +23,7 @@ def test_0_0_is_alive():
     assert game.get_status(0, 0) == ALIVE
 
 
-def test_blinker():
+def test_blinker_toad():
     game = create_game_of_life_with_all_dead_cell()
     game.set_cell_alive(2, 1)
     game.set_cell_alive(3, 1)
@@ -44,3 +44,23 @@ def test_blinker():
     story_board.add_frame(step2)
     verify(story_board)
 
+def TODO_test_blinker_simplest():
+    game = create_game_of_life_with_all_dead_cell()
+    game.set_cell_alive(2, 1)
+    game.set_cell_alive(3, 1)
+    game.set_cell_alive(4, 1)
+    game.set_cell_alive(1, 2)
+    game.set_cell_alive(2, 2)
+    game.set_cell_alive(3, 2)
+    story_board = StoryBoard()
+    story_board.add_frame(game) # use Approvals magic
+    assert game.get_status(2, 2) == ALIVE
+    assert game.get_status(5, 6) == DEAD
+    step1 = game.move_to_next_time()
+    story_board.add_frame(step1)
+
+    step2 = step1.move_to_next_time()
+    assert step1.get_status(1, 2) == ALIVE
+    assert step2.get_status(2,1) == ALIVE
+    story_board.add_frame(step2)
+    verify(story_board)
